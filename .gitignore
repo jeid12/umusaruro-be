@@ -1,0 +1,34 @@
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment folder
+venv/
+env/
+
+# IDEs and editors
+.vscode/
+.idea/
+
+# MySQL, SQLite, and other databases
+*.sqlite3
+*.db
+
+# Logs and temp files
+*.log
+*.bak
+
+# Python distribution directories
+dist/
+build/
+*.egg-info/
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Pytest
+.cache/
+
+# Dependency directories
+node_modules/
