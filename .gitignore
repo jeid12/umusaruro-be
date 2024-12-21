@@ -29,7 +29,10 @@ build/
 
 # Pytest
 .cache/
-.env
+
 
 # Dependency directories
 node_modules/
+
+# ingore .env file
+.env
