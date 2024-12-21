@@ -8,8 +8,9 @@ class UserRoleBase(BaseModel):
 class UserRoleCreate(UserRoleBase):
     pass
 
-class UserRoleResponse(UserRoleBase):
+class UserRoleResponse(BaseModel):
     id: int
+    name: str
 
     class Config:
         orm_mode = True

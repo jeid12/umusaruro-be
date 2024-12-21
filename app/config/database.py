@@ -5,7 +5,7 @@ from databases import Database
 import os
 
 # Environment variables for MySQL connection (replace with your actual credentials)
-SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "mysql+mysqlconnector://root:password@localhost/dbname")
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://root:password@localhost/umusarurohub")
 
 # For async usage
 database = Database(SQLALCHEMY_DATABASE_URL)
@@ -15,6 +15,7 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
 
 # Session local for database session
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
 
 # Base class for model declarations
 Base = declarative_base()
