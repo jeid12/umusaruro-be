@@ -29,6 +29,7 @@ build/
 
 # Pytest
 .cache/
+.env
 
 # Dependency directories
 node_modules/
