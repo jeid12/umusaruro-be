@@ -29,5 +29,5 @@ jobs:
       run: |
         curl -X POST \
           -H "Authorization: Bearer $RENDER_API_KEY" \
-          -d '{"serviceId": "srv-ctj2fg5svqrc7385nitg"}' \
-          https://api.render.com/v1/services/srv-ctj2fg5svqrc7385nitg/deploy
+          -d '{"serviceId": "srv-ctj33b52ng1s73bgb770"}' \
+          https://api.render.com/v1/services/srv-ctj33b52ng1s73bgb770/deploy
