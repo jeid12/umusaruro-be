@@ -1,4 +1,4 @@
-# schemas.py
+
 
 from pydantic import BaseModel
 
@@ -7,6 +7,9 @@ class UserRoleBase(BaseModel):
 
 class UserRoleCreate(UserRoleBase):
     pass
+
+class Role(UserRoleBase):
+    id: int    
 
 class UserRoleResponse(BaseModel):
     id: int
