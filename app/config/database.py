@@ -5,7 +5,7 @@ from databases import Database
 import os
 
 # Environment variables for MySQL connection (replace with your actual credentials)
-SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://root:password@localhost/umusarurohub")
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "mysql+mysqldb://u404361482_umusaruro:Niyokwizera1$@193.203.166.183:3306/u404361482_umusarurohub")
 
 # For async usage
 database = Database(SQLALCHEMY_DATABASE_URL)
