@@ -7,6 +7,7 @@ class ProductBase(BaseModel):
     type: str  # product type (e.g., dairy, vegetables)
     price: float  # product price
     quantity: int  # available quantity of the product
+    # farmer_id: int  # ID of the farmer (user) who owns the product
 
     class Config:
         orm_mode = True  # Allow Pydantic to work with SQLAlchemy models

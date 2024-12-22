@@ -1,27 +1,40 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from routers.UserRoleRouter import router as user_role_router
 from routers.UserRouter import router as user_router
 from routers.OrderRouter import router as order_router
-from config.database import Base, engine
-import uvicorn
+from routers.ProductRouter import router as product_router
+from config.database import Base, engine, get_db
 
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+# Enable CORS to allow cross-origin requests (change the origins based on your frontend settings)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Adjust this in production (use a specific domain instead of "*")
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 app.include_router(user_role_router)
 app.include_router(user_router)
 app.include_router(order_router)
+app.include_router(product_router)
 
 
 
-# Create tables if running directly
-if __name__ == "__main__":
-    # Create all tables
-    print("Creating tables if they do not exist...")
-    Base.metadata.create_all(bind=engine)
+# Dependency for getting the database
+@app.on_event("startup")
+def startup_event():
+    print("App is starting up...")
 
-    # Start the FastAPI application
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+@app.on_event("shutdown")
+def shutdown_event():
+    print("App is shutting down...")
+
 
 
