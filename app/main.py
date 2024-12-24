@@ -4,6 +4,9 @@ from routers.UserRoleRouter import router as user_role_router
 from routers.UserRouter import router as user_router
 from routers.OrderRouter import router as order_router
 from routers.SubscriptionRouter import router as subscription_router
+from routers.warehouseRouter import router as warehouse_router
+from routers.ProductRouter import router as product_router
+from routers.OrderDetailsRouter import router as order_detail_router
 from config.database import Base, engine
 
 Base.metadata.create_all(bind=engine)
@@ -24,6 +27,11 @@ app.include_router(user_role_router)
 app.include_router(user_router)
 app.include_router(order_router)
 app.include_router(subscription_router)
+app.include_router(warehouse_router)
+app.include_router(product_router)
+app.include_router(order_detail_router)
+
+
 
 
 
