@@ -20,3 +20,6 @@ class User(Base):
 
     # Relationship to products
     products = relationship("Product", back_populates="farmer")
+    
+    # Relationship to warehouses
+    warehouses = relationship("Warehouse", back_populates="user")

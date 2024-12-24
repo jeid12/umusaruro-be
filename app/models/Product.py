@@ -14,3 +14,4 @@ class Product(Base):
 
     # Create a relationship between Product and User (farmer)
     farmer = relationship('User', back_populates='products')  # Assuming User model has a relationship with Product
+    order_details = relationship('OrderDetail', back_populates='product')  # Relationship with OrderDetail

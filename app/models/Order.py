@@ -15,3 +15,4 @@ class Order(Base):
     client_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
     client = relationship("User", back_populates="orders")
+    order_details = relationship('OrderDetail', back_populates='order')  # Relationship with OrderDetail
