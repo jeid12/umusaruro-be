@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from routers.UserRoleRouter import router as user_role_router
 from routers.UserRouter import router as user_router
 from routers.OrderRouter import router as order_router
+from routers.SubscriptionRouter import router as subscription_router
 from config.database import Base, engine
 import uvicorn
 
@@ -12,6 +13,7 @@ app = FastAPI()
 app.include_router(user_role_router)
 app.include_router(user_router)
 app.include_router(order_router)
+app.include_router(subscription_router)
 
 
 
