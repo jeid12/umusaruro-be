@@ -23,3 +23,6 @@ class User(Base):
     
     # Relationship to warehouses
     warehouses = relationship("Warehouse", back_populates="user")
+
+    # Relationship to subscriptions
+    subscriptions = relationship("Subscription", back_populates="user")
