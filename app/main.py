@@ -9,6 +9,7 @@ from routers.ProductRouter import router as product_router
 from routers.OrderDetailsRouter import router as order_detail_router
 from config.database import Base, engine
 from dependencies.auth import router as auth_router
+import os
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
@@ -44,6 +45,11 @@ def startup_event():
 @app.on_event("shutdown")
 def shutdown_event():
     print("App is shutting down...")
+
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
 
 
 
