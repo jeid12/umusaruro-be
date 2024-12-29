@@ -11,6 +11,11 @@ class UserBase(BaseModel):
     location: Optional[str] = None
     role_id: int
 
+class UserLogin(BaseModel):
+    email: str
+    password: str
+
+
 class UserCreate(UserBase):
     pass
 

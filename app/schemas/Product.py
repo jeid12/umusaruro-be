@@ -1,33 +1,34 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, HttpUrl
 from typing import Optional
 
-# Pydantic schema for the Product
+
+# Base schema for the Product
 class ProductBase(BaseModel):
-    name: str  # product name
-    type: str  # product type (e.g., dairy, vegetables)
-    price: float  # product price
-    quantity: int  # available quantity of the product
-    # farmer_id: int  # ID of the farmer (user) who owns the product
+    name: str  # Product name
+    type: str  # Product type (e.g., dairy, vegetables)
+    price: float  # Product price
+    quantity: int  # Available quantity of the product
+    photo_url: Optional[HttpUrl] = None  # URL of the product photo (optional)
 
     class Config:
         orm_mode = True  # Allow Pydantic to work with SQLAlchemy models
 
 
+# Schema for creating new products
 class ProductCreate(ProductBase):
-    pass  # This schema is used for creating new products
-
-
-class ProductUpdate(ProductBase):
-    name: Optional[str]  # Name is optional for update
-    type: Optional[str]  # Type is optional for update
-    price: Optional[float]  # Price is optional for update
-    quantity: Optional[int]  # Quantity is optional for update
-
-
-class ProductResponse(ProductBase):
-    id: int  # The id will be included in the response after the product is created
     farmer_id: int  # ID of the farmer (user) who owns the product
 
-    class Config:
-        orm_mode = True  # This allows Pydantic to work seamlessly with SQLAlchemy models
 
+# Schema for updating products
+class ProductUpdate(BaseModel):
+    name: Optional[str] = None  # Name is optional for update
+    type: Optional[str] = None  # Type is optional for update
+    price: Optional[float] = None  # Price is optional for update
+    quantity: Optional[int] = None  # Quantity is optional for update
+    photo_url: Optional[HttpUrl] = None  # URL of the product photo (optional)
+
+
+# Schema for product response
+class ProductResponse(ProductBase):
+    id: int  # The ID will be included in the response after the product is created
+    farmer_id: int  # ID of the farmer (user) who owns the product

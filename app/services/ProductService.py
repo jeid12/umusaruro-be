@@ -5,17 +5,17 @@ from models.Product import Product  # SQLAlchemy Product model
 from schemas.Product import ProductCreate, ProductUpdate, ProductResponse
 
 # Create a new product
-def create_product(db: Session, product: ProductCreate, farmer_id: int) -> Product:
-    db_product = Product(**product.dict(), farmer_id=farmer_id)  # Create a new Product object
-    db.add(db_product)  
+def create_product(db: Session, product: ProductCreate) -> ProductResponse:
+    db_product = Product(**product.dict())  # Create a new Product object
+    db.add(db_product)
     db.commit()  # Commit the transaction to the database
     db.refresh(db_product)  # Refresh to get the updated data (e.g., auto-generated ID)
-    return db_product
+    return ProductResponse.from_orm(db_product)
 
 
 # Update an existing product
-def update_product(db: Session, product_id: int, product: ProductUpdate) -> Product:
-    db_product = db.query(Product).filter(Product.id == product_id).first()  # Query product by id
+def update_product(db: Session, product_id: int, product: ProductUpdate) -> ProductResponse:
+    db_product = db.query(Product).filter(Product.id == product_id).first()  # Query product by ID
     if not db_product:
         raise HTTPException(status_code=404, detail="Product not found")
 
@@ -25,7 +25,7 @@ def update_product(db: Session, product_id: int, product: ProductUpdate) -> Prod
 
     db.commit()  # Commit changes to the database
     db.refresh(db_product)  # Refresh the product instance with the latest data
-    return db_product
+    return ProductResponse.from_orm(db_product)
 
 
 # Delete a product
@@ -41,7 +41,7 @@ def delete_product(db: Session, product_id: int) -> None:
 # Get all products
 def get_all_products(db: Session) -> List[ProductResponse]:
     products = db.query(Product).all()  # Retrieve all products from the database
-    return products
+    return [ProductResponse.from_orm(product) for product in products]
 
 
 # Get a product by ID
@@ -49,4 +49,4 @@ def get_product_by_id(db: Session, product_id: int) -> ProductResponse:
     db_product = db.query(Product).filter(Product.id == product_id).first()
     if not db_product:
         raise HTTPException(status_code=404, detail="Product not found")
-    return db_product
+    return ProductResponse.from_orm(db_product)
