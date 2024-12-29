@@ -8,7 +8,7 @@ from routers.warehouseRouter import router as warehouse_router
 from routers.ProductRouter import router as product_router
 from routers.OrderDetailsRouter import router as order_detail_router
 from config.database import Base, engine
-
+from dependencies.auth import router as auth_router
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
@@ -30,6 +30,7 @@ app.include_router(subscription_router)
 app.include_router(warehouse_router)
 app.include_router(product_router)
 app.include_router(order_detail_router)
+app.include_router(auth_router)
 
 
 

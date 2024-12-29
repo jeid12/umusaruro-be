@@ -36,3 +36,16 @@ class UserResponse(BaseModel):
 
     class Config:
         orm_mode = True
+
+class UserLoginResponse(BaseModel):
+    id: int
+    name: str
+    email: str
+    contact: str
+    location: str
+    role: Role
+    access_token: str
+    token_type: str
+
+    class Config:
+        orm_mode = True

@@ -12,6 +12,7 @@ class ProductBase(BaseModel):
 
     class Config:
         orm_mode = True  # Allow Pydantic to work with SQLAlchemy models
+        from_attributes = True # Allow Pydantic to create models from attributes                                        
 
 
 # Schema for creating new products
