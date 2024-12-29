@@ -47,8 +47,8 @@ def shutdown_event():
     print("App is shutting down...")
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    # Hard-code the port to 8080
+    uvicorn.run(app, host="0.0.0.0", port=8080)
 
 
 
